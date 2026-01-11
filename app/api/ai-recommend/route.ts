@@ -13,9 +13,10 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const action = searchParams.get('action');
 
+    // ✅ 싱글톤 패턴: getInstance() 사용
     const drawingService = DrawingService.getInstance();
-    const analysisService = AnalysisService.getInstance(drawingService);
-    const aiService = new AIRecommendService(drawingService, analysisService);
+    const analysisService = AnalysisService.getInstance();
+    const aiService = AIRecommendService.getInstance();
 
     // 시뮬레이션 요청
     if (action === 'simulate') {
