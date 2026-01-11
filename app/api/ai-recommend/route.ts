@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     const action = searchParams.get('action');
 
     const drawingService = DrawingService.getInstance();
-    const analysisService = new AnalysisService(drawingService);
+    const analysisService = AnalysisService.getInstance(drawingService);
     const aiService = new AIRecommendService(drawingService, analysisService);
 
     // 시뮬레이션 요청
